@@ -11,7 +11,6 @@ object ReadTestData extends App {
   }
   else {
     val songsData = LoadLyricData.load(args(0))
-    println("\nLoaded " + songsData.songs.length + " songs")
 
     println("\nFirst five musixmatch IDs:")
     songsData.songs.take(5).foreach { song =>

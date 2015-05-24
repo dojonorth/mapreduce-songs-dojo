@@ -10,13 +10,12 @@ object LoadLyricData {
   def load(filename: String): LyricData = {
     val words = parseWordsLine(loadDataFile(filename).head)
     val songs = parseFileToSongs(filename)
-
     LyricData(words, songs)
   }
 
   def loadDataFile(filename: String): Stream[String] = {
-    val allLines = Source.fromFile(filename).getLines()
-    allLines.filter((ln: String) => !ln.startsWith("#")).toStream
+    val allLines = Source.fromFile(filename).getLines().buffered
+    allLines.toStream.filter((ln: String) => !ln.startsWith("#"))
   }
 
   def parseWordsLine(wordsline: String): Stream[String] = {
@@ -38,7 +37,6 @@ object LoadLyricData {
 
   def parseFileToSongs(filename: String): Stream[Song] = {
     val songLines = loadDataFile(filename).tail
-    for (line <- songLines) yield parseTrackLine(line)
+    songLines.map(parseTrackLine)
   }
-
 }
