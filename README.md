@@ -11,8 +11,10 @@ There are 2 text files containing the data we need.
 If you have WGET installed, you can easily download the zip files with the
 following commands:
 
+```
 wget http://labrosa.ee.columbia.edu/millionsong/sites/default/files/AdditionalFiles/mxm_dataset_train.txt.zip
 wget http://labrosa.ee.columbia.edu/millionsong/sites/default/files/AdditionalFiles/mxm_dataset_test.txt.zip
+```
 
 Unzip these files somewhere in the project directory structure.
 
