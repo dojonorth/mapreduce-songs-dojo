@@ -1,4 +1,4 @@
-package bbc.dojonorth
+package bbc.dojonorth.lyrics
 
 /**
  * Just to make sure the test data loads properly...
@@ -7,7 +7,7 @@ package bbc.dojonorth
 object ReadTestData extends App {
 
   if (args.length != 1) {
-    println("Usage: ReadTestData filename")
+    println("Usage: ReadTestData <path to an MXM file>")
   }
   else {
     val songsData = LoadLyricData.load(args(0))

@@ -1,8 +1,4 @@
-package bbc.dojonorth
-
-/**
- * Created by raabyj01 on 24/05/2015.
- */
+package bbc.dojonorth.lyrics
 
 case class Song(trackId: String, mxmId: Int, words: Map[Int,Int])
 

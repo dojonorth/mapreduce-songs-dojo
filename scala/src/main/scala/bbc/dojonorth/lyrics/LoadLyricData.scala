@@ -1,4 +1,4 @@
-package bbc.dojonorth
+package bbc.dojonorth.lyrics
 
 import scala.io.Source
 

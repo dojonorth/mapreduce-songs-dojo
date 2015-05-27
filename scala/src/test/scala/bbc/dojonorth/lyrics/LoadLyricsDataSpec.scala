@@ -1,4 +1,4 @@
-package bbc.dojonorth
+package bbc.dojonorth.lyrics
 
 import org.scalatest.{FlatSpec, Matchers}
 
