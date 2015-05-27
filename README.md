@@ -1,14 +1,17 @@
 # mapreduce-songs-dojo
 
-## Warmup: Exercise1 package
+## Warmup exercise
+
 This exercise is an introduction to the general idea of decomposing a problem
-into a map and reduce stage - if you are familiar with higher order functions
+into map and reduce stages - if you are familiar with higher order functions
 and functional programming it will probably be very easy!
 
 Implement a solution to the following problems using an iterative solution:
 - Given a list of integers, return the sum
 - Given a list of integers, return the sum of their squares
 - Given a list of integers, return the product of double their squares
+
+*Note: there are tests and stub implementations in the bbc.dojonorth.mapreduce package*
 
 These problems can be all be broken into 2 distinct parts: First, the input elements can be transformed. Second, the transformed elements are combined into a result.
 
