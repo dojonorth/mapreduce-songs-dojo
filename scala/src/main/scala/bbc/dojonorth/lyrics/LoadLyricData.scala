@@ -8,18 +8,24 @@ import scala.io.Source
 object LoadLyricData {
 
   def load(filename: String): LyricData = {
-    val words = parseWordsLine(loadDataFile(filename).head)
-    val songs = parseFileToSongs(filename)
+    def lineIterator = loadDataFile(filename)
+
+    val wordsLine = lineIterator.filter(_.startsWith("%"))
+    val songLines = lineIterator.filterNot(_.startsWith("%"))
+
+    val words = parseWordsLine(wordsLine.mkString(","))
+    val songs = parseLinesToSongs(songLines)
+
     LyricData(words, songs)
   }
 
-  def loadDataFile(filename: String): Stream[String] = {
-    val allLines = Source.fromFile(filename).getLines().buffered
-    allLines.toStream.filter((ln: String) => !ln.startsWith("#"))
+  def loadDataFile(filename: String): Iterator[String] = {
+    val allLines = Source.fromFile(filename).getLines()
+    allLines.withFilter((ln: String) => !ln.startsWith("#"))
   }
 
-  def parseWordsLine(wordsline: String): Stream[String] = {
-    wordsline.drop(1).split(",").map(_.toLowerCase).toStream
+  def parseWordsLine(wordsline: String): Seq[String] = {
+    wordsline.drop(1).split(",").map(_.toLowerCase).toSeq
   }
 
   def parseTrackLine(trackLine: String): Song = {
@@ -35,8 +41,7 @@ object LoadLyricData {
     Song(trackId, mxmId, wordIdMap)
   }
 
-  def parseFileToSongs(filename: String): Stream[Song] = {
-    val songLines = loadDataFile(filename).tail
-    songLines.map(parseTrackLine)
+  def parseLinesToSongs(lines: Iterator[String]): Iterator[Song] = {
+    lines.map(parseTrackLine)
   }
 }
