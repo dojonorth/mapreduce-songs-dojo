@@ -32,7 +32,7 @@ set of data - in this case a sample of data from the million song database.
 The song lyrics data is provided by Columbia University at:
 http://labrosa.ee.columbia.edu/millionsong/musixmatch
 
-There are 2 text files containing the data we need.
+There are 3 text files containing the data we need.
 
 If you have WGET installed, you can easily download the zip files with the
 following commands:
@@ -40,15 +40,19 @@ following commands:
 ```
 wget http://labrosa.ee.columbia.edu/millionsong/sites/default/files/AdditionalFiles/mxm_dataset_train.txt.zip
 wget http://labrosa.ee.columbia.edu/millionsong/sites/default/files/AdditionalFiles/mxm_dataset_test.txt.zip
+wget http://labrosa.ee.columbia.edu/millionsong/sites/default/files/AdditionalFiles/mxm_779k_matches.txt.zip
 ```
 
 Unzip these files somewhere in the project directory structure.
 
-Each file contains a list of (stemmed) words, followed by a list of track
-information. This consists of a Track ID, a musiXmatch ID and a list of word
+The first 2 files contain lists of (stemmed) words, followed by a list of track
+information. This consists of a Million Song Database Track ID, a musiXmatch ID and a list of word
 counts (words are indexed starting from 1).
+The 3rd file maps Million Song Database track IDs to metadata from the
+MusixMatch database. Specifically, we can get the artist and song titles - this
+will be useful for displaying results.
 
-Code is provided to load these files into Scala streams. You can also read them
+Code is provided to load these files into Scala objects. You can also read them
 into a SQLite database, which will fill up to around 2GB with indexes!
 
 ### Task 1: Compute the total number of words

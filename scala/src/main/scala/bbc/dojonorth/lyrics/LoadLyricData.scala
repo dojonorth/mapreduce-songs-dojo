@@ -10,38 +10,41 @@ object LoadLyricData {
   def load(filename: String): LyricData = {
     def lineIterator = loadDataFile(filename)
 
-    val wordsLine = lineIterator.filter(_.startsWith("%"))
-    val songLines = lineIterator.filterNot(_.startsWith("%"))
+    val wordsLine = lineIterator filter (_.startsWith("%"))
+    val songLines = lineIterator filterNot (_.startsWith("%"))
 
     val words = parseWordsLine(wordsLine.mkString(","))
-    val songs = parseLinesToSongs(songLines)
+    val songs = parseLinesToSongs(songLines, words)
 
     LyricData(words, songs)
   }
 
   def loadDataFile(filename: String): Iterator[String] = {
     val allLines = Source.fromFile(filename).getLines()
-    allLines.withFilter((ln: String) => !ln.startsWith("#"))
+    allLines.withFilter { ln => !ln.startsWith("#") }
   }
 
   def parseWordsLine(wordsline: String): Seq[String] = {
-    wordsline.drop(1).split(",").map(_.toLowerCase).toSeq
+    // drop the %, then split by comma, then lowercase
+    wordsline drop(1) split(",") map(_.toLowerCase) toSeq
   }
 
-  def parseTrackLine(trackLine: String): Song = {
+  def parseTrackLine(trackLine: String, words: Seq[String]): SongWords = {
     val splitLine = trackLine.split(",")
     val trackId = splitLine.head
-    val mxmId = splitLine.tail.head.toInt
+    val mxmId = splitLine.drop(1).head.toInt
 
-    val wordIdMap = splitLine.tail.tail.map { wc =>
+    val wordIdMap = splitLine.drop(2).map { wc =>
+      // word counts are specified as index to count pairs
+      // index is 1-based index
       val idAndCount = wc.split(":")
-      idAndCount(0).toInt -> idAndCount(1).toInt
+      words(idAndCount(0).toInt - 1) -> idAndCount(1).toInt
     }.toMap
 
-    Song(trackId, mxmId, wordIdMap)
+    SongWords(trackId, mxmId, wordIdMap)
   }
 
-  def parseLinesToSongs(lines: Iterator[String]): Iterator[Song] = {
-    lines.map(parseTrackLine)
+  def parseLinesToSongs(lines: Iterator[String], words: Seq[String]): Iterator[SongWords] = {
+    lines map { parseTrackLine(_, words) }
   }
 }

@@ -11,7 +11,7 @@ class LoadLyricsDataSpec extends FlatSpec with Matchers {
 
   "A lyric data loader" should "ignore comment lines" in {
     val lines = LoadLyricData.loadDataFile(testFile)
-    val commentedLines = lines.filter(line => line.startsWith("#")).toList
+    val commentedLines = lines filter { line => line.startsWith("#") } toList
 
     commentedLines should be (Nil)
   }
@@ -47,7 +47,7 @@ class LoadLyricsDataSpec extends FlatSpec with Matchers {
   it should "only produce lowercase words" in {
     val parsedLine = LoadLyricData.parseWordsLine(wordsLine)
 
-    parsedLine.foreach {
+    parsedLine foreach {
       w =>
         w.toLowerCase should be (w)
     }
@@ -55,21 +55,27 @@ class LoadLyricsDataSpec extends FlatSpec with Matchers {
 
   "A track line parser" should "extract the track ID, the MusixMatch ID and a map of word ID to count" in {
     val lines = LoadLyricData.loadDataFile(testFile).toList
-    val parsedTrack = LoadLyricData.parseTrackLine(lines.tail.head)
+    val words = LoadLyricData.parseWordsLine(lines.head)
+
+    // helper to make sure 1-based indexing is adhered to
+    def getWordForIndex(index: Int) = words(index-1)
+
+    val parsedTrack = LoadLyricData.parseTrackLine(lines.tail.head, words)
 
     parsedTrack.trackId should be ("TRAABRX12903CC4816")
     parsedTrack.mxmId should be (1548880)
-    parsedTrack.words should contain (2 -> 19)
-    parsedTrack.words should contain (30 -> 11)
+    parsedTrack.words should contain (getWordForIndex(2) -> 19)
+    parsedTrack.words should contain (getWordForIndex(30) -> 11)
 
   }
 
-  val dummySong: Song = Song("TRAAMYTEST", 1000, Map(2 -> 19, 4 -> 7, 5 -> 6))
+  val dummySong: SongWords = SongWords("TRAAMYTEST", 1000, Map("the" -> 19, "to" -> 7, "and" -> 6))
+
   "A song parser" should "produce a stream of 2 songs from the test file" in {
 
-    val songs = LoadLyricData.parseFileToSongs(testFile).toList
-    songs should contain (dummySong)
+    val songs = LoadLyricData.load(testFile).songs.toList
 
+    songs should contain (dummySong)
     songs.length should be (2)
   }
 
@@ -79,8 +85,10 @@ class LoadLyricsDataSpec extends FlatSpec with Matchers {
     fullyParsedLyricData.words should contain ("this")
     fullyParsedLyricData.words should not contain ("jens")
 
-    fullyParsedLyricData.songs should contain (dummySong)
-    fullyParsedLyricData.songs.length should be (2)
+
+    val songs = fullyParsedLyricData.songs.toList
+    songs should contain (dummySong)
+    songs.length should be (2)
   }
 
 }
