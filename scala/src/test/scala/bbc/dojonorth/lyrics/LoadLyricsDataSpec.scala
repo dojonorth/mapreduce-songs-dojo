@@ -1,23 +1,27 @@
 package bbc.dojonorth.lyrics
 
 import org.scalatest.{FlatSpec, Matchers}
-
 import scala.collection.immutable.Nil
+import scala.language.postfixOps
+
 
 class LoadLyricsDataSpec extends FlatSpec with Matchers {
 
+  val lyricDataLoader = new LyricDataLoader
   val fixturesDir = "./src/test/resources"
   val testFile = s"$fixturesDir/lyricdata_sample.txt"
 
   "A lyric data loader" should "ignore comment lines" in {
-    val lines = LoadLyricData.loadDataFile(testFile)
+    val lines = lyricDataLoader.loadDataFile(testFile)
     val commentedLines = lines filter { line => line.startsWith("#") } toList
 
     commentedLines should be (Nil)
   }
 
+
+
   it should "contain the words list in the first element" in {
-    val lines = LoadLyricData.loadDataFile(testFile).toList
+    val lines = lyricDataLoader.loadDataFile(testFile).toList
     val firstElement: String = lines.head
 
     firstElement should startWith ("%")
@@ -26,7 +30,7 @@ class LoadLyricsDataSpec extends FlatSpec with Matchers {
   }
 
   it should "contain a track sample in the second element" in {
-    val lines = LoadLyricData.loadDataFile(testFile).toList
+    val lines = lyricDataLoader.loadDataFile(testFile).toList
 
     val secondElement = lines.tail.head // wish I had Scheme's cadr here!
 
@@ -37,7 +41,7 @@ class LoadLyricsDataSpec extends FlatSpec with Matchers {
   val wordsLine = "%i,the,you,to,and,a,Me,it,not,in,my,is,of,your,"
 
   "A words line parser" should "produce words from the string" in {
-    val parsedLine = LoadLyricData.parseWordsLine(wordsLine)
+    val parsedLine = lyricDataLoader.parseWordsLine(wordsLine)
 
     parsedLine should not contain ("%i")
     parsedLine should contain ("i")
@@ -45,7 +49,7 @@ class LoadLyricsDataSpec extends FlatSpec with Matchers {
     parsedLine should have size 14
   }
   it should "only produce lowercase words" in {
-    val parsedLine = LoadLyricData.parseWordsLine(wordsLine)
+    val parsedLine = lyricDataLoader.parseWordsLine(wordsLine)
 
     parsedLine foreach {
       w =>
@@ -54,13 +58,13 @@ class LoadLyricsDataSpec extends FlatSpec with Matchers {
   }
 
   "A track line parser" should "extract the track ID, the MusixMatch ID and a map of word ID to count" in {
-    val lines = LoadLyricData.loadDataFile(testFile).toList
-    val words = LoadLyricData.parseWordsLine(lines.head)
+    val lines = lyricDataLoader.loadDataFile(testFile).toList
+    val words = lyricDataLoader.parseWordsLine(lines.head)
 
     // helper to make sure 1-based indexing is adhered to
     def getWordForIndex(index: Int) = words(index-1)
 
-    val parsedTrack = LoadLyricData.parseTrackLine(lines.tail.head, words)
+    val parsedTrack = lyricDataLoader.parseTrackLine(lines.tail.head, words)
 
     parsedTrack.trackId should be ("TRAABRX12903CC4816")
     parsedTrack.mxmId should be (1548880)
@@ -73,14 +77,14 @@ class LoadLyricsDataSpec extends FlatSpec with Matchers {
 
   "A song parser" should "produce a stream of 2 songs from the test file" in {
 
-    val songs = LoadLyricData.load(testFile).songs.toList
+    val songs = lyricDataLoader.load(testFile).songs.toList
 
     songs should contain (dummySong)
     songs.length should be (2)
   }
 
   "A lyric data loader" should "produce a valid lyric data object" in {
-    val fullyParsedLyricData = LoadLyricData.load(testFile)
+    val fullyParsedLyricData = lyricDataLoader.load(testFile)
 
     fullyParsedLyricData.words should contain ("this")
     fullyParsedLyricData.words should not contain ("jens")

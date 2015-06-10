@@ -1,11 +1,11 @@
 package bbc.dojonorth.lyrics
 
 import scala.io.Source
-
+import scala.language.postfixOps
 /**
  * This object contains code to read in the Million Song data files
  */
-object LoadLyricData {
+class LyricDataLoader {
 
   def load(filename: String): LyricData = {
     def lineIterator = loadDataFile(filename)
@@ -36,15 +36,14 @@ object LoadLyricData {
 
     val wordIdMap = splitLine.drop(2).map { wc =>
       // word counts are specified as index to count pairs
-      // index is 1-based index
+      // the index is 1-based, so we convert to 0-based here
       val idAndCount = wc.split(":")
       words(idAndCount(0).toInt - 1) -> idAndCount(1).toInt
-    }.toMap
+    } toMap
 
     SongWords(trackId, mxmId, wordIdMap)
   }
 
-  def parseLinesToSongs(lines: Iterator[String], words: Seq[String]): Iterator[SongWords] = {
+  def parseLinesToSongs(lines: Iterator[String], words: Seq[String]): Iterator[SongWords] =
     lines map { parseTrackLine(_, words) }
-  }
 }

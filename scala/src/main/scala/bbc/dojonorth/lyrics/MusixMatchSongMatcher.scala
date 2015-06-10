@@ -1,15 +1,21 @@
 package bbc.dojonorth.lyrics
 
 import scala.io.Source
+import scala.language.postfixOps
 
-object MusixMatchSongMatcher {
+/**
+ * This class loads song titles and artists from the MSD matches file
+ * Download the source data at: http://labrosa.ee.columbia.edu/millionsong/sites/default/files/AdditionalFiles/mxm_779k_matches.txt.zip
+ */
+class MusixMatchSongMatcher {
 
-  def loadSongMetaData(filename: String): Seq[MSDTrack] = {
+  def loadSongMetaData(filename: String): Map[String,MSDTrack] = {
     val trackLines = loadDataFile(filename)
 
     trackLines map { line: String =>
-      parseMsdTrackLine(line)
-    } toSeq
+      val track = parseMsdTrackLine(line)
+      (track.trackId -> track)
+    } toMap
   }
 
   def loadDataFile(filename: String): Iterator[String] = {
@@ -22,7 +28,7 @@ object MusixMatchSongMatcher {
     val trackId = splitLine(0)
     val artist = splitLine(1)
     val title = splitLine(2)
-    val mxmId = splitLine(3).toInt
+    val mxmId = splitLine(3) toInt
 
     MSDTrack(trackId, mxmId, artist, title)
   }

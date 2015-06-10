@@ -1,6 +1,6 @@
-package bbc.dojonorth.mapreduce
+package bbc.dojonorth.mapreduce.warmup
 
-object Exercise1 {
+class Exercise1 {
 
   def sumOfList(xs: List[Int]): Int = ???
 

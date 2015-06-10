@@ -11,7 +11,7 @@ brew install sbt
 To run the tests and ensure you've implemented the functions correctly, you can run the following in the command line:
 
 ```
-sbt "test-only bbc.dojonorth.mapreduce.exercise1.*"
+sbt "test-only bbc.dojonorth.mapreduce.warmup.*"
 ```
 
 ## Lyrics data - reading in a dataset file
