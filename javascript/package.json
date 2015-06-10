@@ -1,0 +1,25 @@
+{
+  "name": "mapreduce-songs-dojo",
+  "version": "1.0.0",
+  "description": "JS distribution for MapReduce Songs Dojo",
+  "main": "index.js",
+  "dependencies": {
+    "lodash": "^3.9.3"
+  },
+  "devDependencies": {
+    "lodash": "^3.9.3"
+  },
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dojonorth/mapreduce-songs-dojo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dojonorth/mapreduce-songs-dojo/issues"
+  },
+  "homepage": "https://github.com/dojonorth/mapreduce-songs-dojo"
+}
