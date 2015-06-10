@@ -1,0 +1,22 @@
+# musiXmatch dataset - list of matches
+#     matches provided by musiXmatch based on artist names
+#     and song titles from the Million Song Dataset.
+# MORE INFORMATION:
+#     http://labrosa.ee.columbia.edu/millionsong/musixmatch
+# FORMAT:
+#     #    -> comment, ignore
+#     tid|artist name|title|mxm tid|artist_name|title
+#        tid          -> Million Song Dataset track ID
+#        artist name  -> artist name in the MSD
+#        title        -> title in the MSD
+#        mxm tid      -> musiXmatch track ID
+#        artist name  -> artist name for mXm
+#        title        -> title for mXm
+#        |            -> actual separator: <SEP>
+# QUESTIONS / COMMENTS
+#     tb2332@columbia.edu
+# Enjoy!
+TRMMMKD128F425225D<SEP>Karkkiautomaatti<SEP>Tanssi vaan<SEP>4418550<SEP>Karkkiautomaatti<SEP>Tanssi vaan
+TRMMMRX128F93187D9<SEP>Hudson Mohawke<SEP>No One Could Ever<SEP>8898149<SEP>Hudson Mohawke<SEP>No One Could Ever
+TRMMMCH128F425532C<SEP>Yerba Brava<SEP>Si Vos Querés<SEP>9239868<SEP>Yerba Brava<SEP>Si vos queres
+TRMMMXN128F42936A5<SEP>David Montgomery<SEP>Symphony No. 1 G minor "Sinfonie Serieuse"/Allegro con energia<SEP>5346741<SEP>Franz Berwald<SEP>Symphony No. 1 in G minor "Sinfonie Sérieuse": I. Allegro con energia
