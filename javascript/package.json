@@ -4,20 +4,16 @@
   "description": "JS distribution for MapReduce Songs Dojo",
   "main": "index.js",
   "dependencies": {
-    "lodash": "^3.9.3"
-  },
-  "devDependencies": {
-    "lodash": "^3.9.3"
+    "lodash": "^3.9.3",
+    "mocha": "^2.2.5"
   },
   "scripts": {
-    "test": "test"
+    "test": "./node_modules/mocha/bin/mocha"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/dojonorth/mapreduce-songs-dojo.git"
   },
-  "author": "",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/dojonorth/mapreduce-songs-dojo/issues"
   },
