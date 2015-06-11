@@ -104,11 +104,15 @@ For the training data file:
 Your task now is to write a function which finds all songs containing a given word.
 Note that our dataset contains stemmed words!
 
-1. Write a map function which takes a track and returns the Track ID and Boolean reflecting whether the track contains the specified word.
+1. Write a map function which takes a song and returns a List with the Track ID, only if the track contains the specified word.
+  If the song does not contain the word, it should return an empty List.
 
-2. Write a reduce function which takes a list of Track IDs and a single (Track ID, Boolean) pair. It should add the Track ID to the list if the Boolean is true.
+2. Write a reduce function which takes 2 lists of Track IDs. It should combine the 2 lists.
 
 3. Use the map and reduce functions to define your grep function.
+
+#### Idea:
+- Try to use the MusixMatchSongMatcher class to give the results as a list of song titles instead of Track IDs
 
 ### Task 4: Reverse index
 
@@ -119,7 +123,7 @@ Can you think of any interesting queries using it?
 
 ### Task 5: Obscenity
 
-Try to use your solutions from the previous tasks to find out which songs have the most profane lyrics.
+Try to build on your solutions to the previous tasks to find out which songs have the most profane lyrics.
 
 You will need some way to measure how obscene a given song is.
 
