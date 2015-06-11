@@ -18,4 +18,7 @@ class Task3Grep {
     val inputData = lyricData.songs
     ???
   }
+
+  // extension 1: create an App which calls the Grep function with a command line argument for the query word
+  // extension 2: return a list of MSDTracks instead of TrackIDs
 }

@@ -127,14 +127,14 @@ Try to build on your solutions to the previous tasks to find out which songs hav
 
 You will need some way to measure how obscene a given song is.
 
-### Task 6: Real world map reduce implementations
+### Task 6: Real world MapReduce implementations
 
 Have a look at some of the well known open source MapReduce implementations for your chosen programming language.
 Find out how you could port your code to use them.
 Most implementations use Hadoop under the hood.
 
 Examples for Scala:
-Spark, Scalding, Scoobi.
+Apache Spark, Scalding, Scoobi.
 
 Amazon provide Elastic Map Reduce (EMR). This runs Hadoop jobs across EC2 instances.
 There is a QwikLab available here:
