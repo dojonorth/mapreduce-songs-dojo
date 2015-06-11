@@ -76,7 +76,8 @@ It provides a dictionary mapping Track ID to "MSDTrack", a class with artist and
 3. Combine your map and reduce functions to get the total word count for all the songs in the Test dataset. Try to find the top 10 words by count.
 
 #### Hints:
-- In Scala, use the ```HashMap``` type rather than ```Map``` if you want to benefit from the built-in ```merge``` function for combining two Maps.
+- In Scala, use the ```HashMap``` type rather than ```Map``` if you want to benefit from the built-in ```merged``` function for combining two Maps.
+- In the Helpers object, there is an implicit conversion function for converting Map to HashMap
 - You can also use Lists to store intermediate data instead of dictionaries.
 
 ### Task 2: More word statistics
