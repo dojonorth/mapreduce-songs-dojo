@@ -1,8 +1,5 @@
 package bbc.dojonorth.mapreduce
 
-import bbc.dojonorth.lyrics.ReadTestData._
-import org.apache.spark.{SparkContext, SparkConf}
-import org.apache.spark.SparkContext._
 import collection.immutable.HashMap
 import bbc.dojonorth.lyrics.{LyricData, LyricDataLoader, SongWords}
 

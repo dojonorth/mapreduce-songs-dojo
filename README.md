@@ -65,9 +65,12 @@ The SQLite-generating code can be found here:
 https://github.com/tbertinmahieux/MSongsDB/tree/master/Tasks_Demos/Lyrics)
 
 ### Task 1: Compute the total number of words
+
 With the LyricDataLoader class, you have a method to get a list of tracks, each with a dictionary mapping words (strings) to their respective counts.
 The MusixMatchSongMatcher class will load the "mxm_779k_matches.txt" file.
 It provides a dictionary mapping Track ID to "MSDTrack", a class with artist and title information.
+
+*N.B.: This is harder than task 2 - you may want to attempt that first*
 
 1. Write a map function which takes a track and produces the dictionary (i.e. Scala Map) of word counts.
 
@@ -75,16 +78,26 @@ It provides a dictionary mapping Track ID to "MSDTrack", a class with artist and
 
 3. Combine your map and reduce functions to get the total word count for all the songs in the Test dataset. Try to find the top 10 words by count.
 
-#### Hints:
-- In Scala, use the ```HashMap``` type rather than ```Map``` if you want to benefit from the built-in ```merged``` function for combining two Maps.
+#### Hints (mainly Scala):
+- Use the ```HashMap[A,B]``` type rather than ```Map[A,B]``` if you want to benefit from the built-in ```merged``` function for combining two Maps.
 - In the Helpers object, there is an implicit conversion function for converting Map to HashMap
-- You can also use Lists to store intermediate data instead of dictionaries.
+- You could use any iterable data structure to store intermediate data instead of dictionaries.
 
 ### Task 2: More word statistics
 
 In a similar way to the previous task, write map and reduce functions to find the average number of different words in a song, and the average total number of words in a song.
 
-Find out which songs have the largest vocabulary.
+The expected results are as follows for the test data file:
+- Average different words: 81
+- Average total words: 212
+
+For the training data file:
+- Average different words: 80
+- Average total words: 213
+
+#### Hints:
+- Think about averaging - can the mean be computed before all the values are available?
+- Can you combine
 
 ### Task 3: Grep
 
