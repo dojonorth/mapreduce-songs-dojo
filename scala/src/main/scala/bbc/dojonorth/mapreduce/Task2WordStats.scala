@@ -16,7 +16,6 @@ class Task2AverageDifferentWords {
 }
 
 class Task2AverageTotalWords {
-  var totalSongs = 0
 
   // should return total number of words in a song
   def mapFun(song: SongWords): Int = {
