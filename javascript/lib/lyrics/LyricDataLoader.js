@@ -33,8 +33,22 @@ LyricDataLoader.prototype.parseTrackLine = function (trackLine, words) {
     }
 };
 
-LyricDataLoader.prototype.load = function (filename) {
+LyricDataLoader.prototype.parseLinesToSongs = function (lines, words) {
+    return _.map(lines, function(line) {
+        return this.parseTrackLine(line, words);
+    }.bind(this))
+};
 
+LyricDataLoader.prototype.load = function (filename) {
+    var lines = this.loadDataFile(filename);
+
+    var wordsLine = lines.filter(function (line) {return line.indexOf('%') === 0;})[0];
+    var songLines = lines.filter(function (line) {return line.indexOf('%') !== 0;});
+
+    var words = this.parseWordsLine(wordsLine);
+    var songs = this.parseLinesToSongs(songLines, words);
+
+    return {words: words, songs: songs};
 };
 
 module.exports = LyricDataLoader;

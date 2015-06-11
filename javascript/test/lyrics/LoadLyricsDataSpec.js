@@ -94,6 +94,7 @@ describe('LyricDataLoader', function () {
             var songs = lyricDataLoader.load(testFile).songs
 
             assert.equal(2, songs.length);
+            assert.equal(JSON.stringify(dummySong), JSON.stringify(songs[1]));
         });
     });
 });
