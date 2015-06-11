@@ -28,16 +28,14 @@ describe('MusixMatchSongMatcher', function () {
         });
     });
 
+    var exampleTrack = {trackId: "TRMMMKD128F425225D", mxmId: 4418550, artist: "Karkkiautomaatti", title: "Tanssi vaan"};
     describe('#parseMsdTrackLine()', function () {
-        var exampleTrack = {trackId: "TRMMMKD128F425225D", mxmId: 4418550, artist: "Karkkiautomaatti", title: "Tanssi vaan"};
 
         it('should parse lines beginning with TR into song descriptors', function() {
             var exampleLine = 'TRMMMKD128F425225D<SEP>Karkkiautomaatti<SEP>Tanssi vaan<SEP>4418550<SEP>Karkkiautomaatti<SEP>Tanssi vaan';
             var parsed = musixMatchSongMatcher.parseMsdTrackLine(exampleLine);
 
-            // this is a hacky as hell way of JS object comparison,
-            // it may fail depending on internal JSON implementation.
-            assert.equal(JSON.stringify(exampleTrack), JSON.stringify(parsed));
+            assert.deepEqual(exampleTrack, parsed);
         });
     });
 
@@ -45,6 +43,8 @@ describe('MusixMatchSongMatcher', function () {
         it('should parse all lines into track data', function() {
             var metadata = musixMatchSongMatcher.loadSongMetaData(testFile);
             assert.equal(4, Object.keys(metadata).length);
+
+            assert.deepEqual(exampleTrack, metadata[exampleTrack.trackId]);
         });
     });
 });

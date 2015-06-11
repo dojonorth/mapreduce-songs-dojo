@@ -54,7 +54,7 @@ describe('LyricDataLoader', function () {
         it('should produce lowercase only', function () {
             var parsedLine = lyricDataLoader.parseWordsLine(wordsLine);
 
-            _.each(function(word) {
+            _.each(parsedLine, function(word) {
                 assert.equal(word, word.toLowerCase());
             });
 
@@ -94,7 +94,7 @@ describe('LyricDataLoader', function () {
             var songs = lyricDataLoader.load(testFile).songs
 
             assert.equal(2, songs.length);
-            assert.equal(JSON.stringify(dummySong), JSON.stringify(songs[1]));
+            assert.deepEqual(dummySong, songs[1]);
         });
     });
 });
