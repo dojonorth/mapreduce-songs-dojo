@@ -9,8 +9,7 @@ class Task3Grep {
     def mapFun(songWords: SongWords): List[String] = {
       ???
     }
-
-    // the reduce function should incorporate songs where the boolean argument is true
+    
     def reduceFun(tracksSoFar: List[String], newSong: List[String]): List[String] = {
       ???
     }
