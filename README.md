@@ -14,12 +14,12 @@ This exercise is an introduction to the general idea of decomposing a problem
 into map and reduce stages - if you are familiar with higher order functions
 and functional programming it will probably be very easy!
 
-Implement a solution to the following problems using an iterative solution:
+Implement a solution to the following problems using an iterative solution (e.g. for loops):
 - Given a list of integers, return the sum
 - Given a list of integers, return the sum of their squares
 - Given a list of integers, return the product of double their squares
 
-*Note: there are tests and stub implementations in the bbc.dojonorth.mapreduce.Exercise1 classes*
+*Note: there are tests and stub implementations in the bbc.dojonorth.mapreduce.warmup.Exercise1 class (Scala)*
 
 These problems can be all be broken into 2 distinct parts: First, the input elements are transformed. Then, the transformed elements are combined into a result.
 
@@ -64,7 +64,7 @@ into a SQLite database, which will fill up to around 2GB with indexes!
 The SQLite-generating code can be found here:
 https://github.com/tbertinmahieux/MSongsDB/tree/master/Tasks_Demos/Lyrics)
 
-### Task 1: Compute the total number of words
+### Task 1: Compute the word counts for all words across all songs
 
 With the LyricDataLoader class, you have a method to get a list of tracks, each with a dictionary mapping words (strings) to their respective counts.
 The MusixMatchSongMatcher class will load the "mxm_779k_matches.txt" file.

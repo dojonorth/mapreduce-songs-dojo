@@ -7,7 +7,7 @@ import bbc.dojonorth.lyrics.{LyricData, LyricDataLoader, SongWords}
  * The HelloWorld of MapReduce
  */
 class Task1WordCount {
-  // Importing "Helpers._" brings the automatic Map to HashMap converter into scope
+  // Importing "Helpers._" brings an automatic Map to HashMap converter into scope
   import Helpers._
 
   def mapFun(songWords: SongWords): HashMap[String, Int] = {
@@ -43,8 +43,8 @@ object WordCount extends App {
 
     // the comparing function below uses the values in any two dictionary entries
     // ._2 means second element in pair
-    bigDictionary.toList.sortWith{ (thisDictionary, thatDictionary) =>
-      thisDictionary._2 > thatDictionary._2
+    bigDictionary.toList.sortWith{ (thisKV, thatKV) =>
+      thisKV._2 > thatKV._2
     }
   }
 
