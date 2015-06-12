@@ -99,6 +99,8 @@ With the LyricDataLoader class, you have a method to get a list of tracks, each 
 - In the Helpers object, there is an implicit conversion function for converting Map to HashMap
 - You could use any iterable data structure to store intermediate data instead of dictionaries.
 
+#### Hints (javascript):
+- It may help to use an object to keep hold of the counts, sums and averages
 
 ### Task 3: Grep
 
