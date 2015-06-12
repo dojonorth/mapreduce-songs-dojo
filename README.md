@@ -64,26 +64,11 @@ into a SQLite database, which will fill up to around 2GB with indexes!
 The SQLite-generating code can be found here:
 https://github.com/tbertinmahieux/MSongsDB/tree/master/Tasks_Demos/Lyrics)
 
-### Task 1: Compute the word counts for all words across all songs
-
-With the LyricDataLoader class, you have a method to get a list of tracks, each with a dictionary mapping words (strings) to their respective counts.
 The MusixMatchSongMatcher class will load the "mxm_779k_matches.txt" file.
 It provides a dictionary mapping Track ID to "MSDTrack", a class with artist and title information.
+Using this is optional, but it will give more readable information for Tasks 3 and 4.
 
-*N.B.: This is harder than task 2 - you may want to attempt that first*
-
-1. Write a map function which takes a track and produces the dictionary (i.e. Scala Map) of word counts.
-
-2. Write a reduce function which takes 2 dictionaries of word counts and merges them to a single dictionary.
-
-3. Combine your map and reduce functions to get the total word count for all the songs in the Test dataset. Try to find the top 10 words by count.
-
-#### Hints (mainly Scala):
-- Use the ```HashMap[A,B]``` type rather than ```Map[A,B]``` if you want to benefit from the built-in ```merged``` function for combining two Maps.
-- In the Helpers object, there is an implicit conversion function for converting Map to HashMap
-- You could use any iterable data structure to store intermediate data instead of dictionaries.
-
-### Task 2: More word statistics
+### Task 1: Word statistics
 
 In a similar way to the previous task, write map and reduce functions to find the average number of different words in a song, and the average total number of words in a song.
 
@@ -98,6 +83,22 @@ For the training data file:
 #### Hints:
 - Think about averaging - can the mean be computed before all the values are available?
 - Can you combine
+
+### Task 2: Compute the word counts for all words across all songs
+
+With the LyricDataLoader class, you have a method to get a list of tracks, each with a dictionary mapping words (strings) to their respective counts. Supply the load function with the path to the file you want to use (i.e. mxm_dataset_train.txt or mxm_dataset_test.txt).
+
+1. Write a map function which takes a track and produces the dictionary (i.e. Scala Map) of word counts.
+
+2. Write a reduce function which takes 2 dictionaries of word counts and merges them to a single dictionary.
+
+3. Combine your map and reduce functions to get the total word count for all the songs in the Test dataset. Try to find the top 10 words by count.
+
+#### Hints (mainly Scala):
+- Use the ```HashMap[A,B]``` type rather than ```Map[A,B]``` if you want to benefit from the built-in ```merged``` function for combining two Maps.
+- In the Helpers object, there is an implicit conversion function for converting Map to HashMap
+- You could use any iterable data structure to store intermediate data instead of dictionaries.
+
 
 ### Task 3: Grep
 

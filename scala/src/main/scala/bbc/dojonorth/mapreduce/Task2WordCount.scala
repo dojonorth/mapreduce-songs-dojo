@@ -6,7 +6,7 @@ import bbc.dojonorth.lyrics.{LyricData, LyricDataLoader, SongWords}
 /**
  * The HelloWorld of MapReduce
  */
-class Task1WordCount {
+class Task2WordCount {
   // Importing "Helpers._" brings an automatic Map to HashMap converter into scope
   import Helpers._
 
@@ -34,7 +34,7 @@ class Task1WordCount {
  */
 object WordCount extends App {
   val lyricDataLoader = new LyricDataLoader
-  val wc = new Task1WordCount
+  val wc = new Task2WordCount
 
   def processData(songsData: LyricData) = {
     val bigDictionary = songsData.songs

@@ -2,7 +2,7 @@ package bbc.dojonorth.mapreduce
 
 import bbc.dojonorth.lyrics.{LyricData, LyricDataLoader, SongWords}
 
-class Task2AverageDifferentWords {
+class Task1AverageDifferentWords {
 
   // should return number of distinct words in a song
   def mapFun(song: SongWords): Int = {
@@ -15,7 +15,7 @@ class Task2AverageDifferentWords {
   }
 }
 
-class Task2AverageTotalWords {
+class Task1AverageTotalWords {
 
   // should return total number of words in a song
   def mapFun(song: SongWords): Int = {
@@ -36,8 +36,8 @@ class Task2AverageTotalWords {
  */
 object WordStats extends App {
   val lyricDataLoader = new LyricDataLoader
-  val differentWords = new Task2AverageDifferentWords
-  val totalWords = new Task2AverageTotalWords
+  val differentWords = new Task1AverageDifferentWords
+  val totalWords = new Task1AverageTotalWords
 
   def getAverageDifferentWords(songsData: LyricData) = {
     val theDifferentWords = songsData.songs

@@ -4,10 +4,10 @@ import bbc.dojonorth.lyrics.SongWords
 import org.scalatest.{Matchers, FlatSpec}
 
 
-class Task2WordStatsSpec extends FlatSpec with Matchers {
+class Task1WordStatsSpec extends FlatSpec with Matchers {
 
   "Map Function for different words" should "take a song and return the number of different words" in {
-    val wc = new Task2AverageDifferentWords
+    val wc = new Task1AverageDifferentWords
     val song = SongWords("tra123", 12345, Map("the" -> 4, "i" -> 5))
 
     val result = wc.mapFun(song)
@@ -16,7 +16,7 @@ class Task2WordStatsSpec extends FlatSpec with Matchers {
   }
 
   "Reduce Function for different words" should "do something with 2 map results" in {
-    val wc = new Task2AverageDifferentWords
+    val wc = new Task1AverageDifferentWords
     val song = SongWords("tra123", 12345, Map("the" -> 4, "i" -> 5))
 
     val result = wc.mapFun(song)
@@ -25,7 +25,7 @@ class Task2WordStatsSpec extends FlatSpec with Matchers {
   }
 
   "Map Function for total words" should "take a song and return the total number of words" in {
-    val wc = new Task2AverageTotalWords
+    val wc = new Task1AverageTotalWords
     val song = SongWords("tra123", 12345, Map("the" -> 4, "i" -> 5))
 
     val result = wc.mapFun(song)
@@ -34,7 +34,7 @@ class Task2WordStatsSpec extends FlatSpec with Matchers {
   }
 
   "Reduce Function for total words" should "do something with 2 map results" in {
-    val wc = new Task2AverageTotalWords
+    val wc = new Task1AverageTotalWords
     val song = SongWords("tra123", 12345, Map("the" -> 4, "i" -> 5))
 
     val result = wc.mapFun(song)
