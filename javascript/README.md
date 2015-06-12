@@ -13,7 +13,7 @@ npm install
 ### To run only the warm-up exercise tests
 
 ```
-npm test -- warmupSpec.js
+npm test --warmupSpec.js
 ```
 
 ### To run all of the tests
