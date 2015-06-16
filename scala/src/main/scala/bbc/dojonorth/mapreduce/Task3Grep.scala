@@ -6,11 +6,11 @@ class Task3Grep {
 
   def grep(word: String, lyricData: LyricData): List[String] = {
 
-    def mapFun(songWords: SongWords): List[String] = {
+    def mapFun(songWords: SongWords) = {
       ???
     }
     
-    def reduceFun(tracksSoFar: List[String], newSong: List[String]): List[String] = {
+    def reduceFun(tracksSoFar: List[String], newSong: List[String]) = {
       ???
     }
 

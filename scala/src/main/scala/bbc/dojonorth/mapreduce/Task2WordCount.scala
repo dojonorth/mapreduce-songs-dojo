@@ -15,9 +15,8 @@ class Task2WordCount {
   }
 
   // the reduce function should combine two Maps into a single one with the counts combined for matching words
-  def reduceFun(firstMap: HashMap[String,Int], secondMap: HashMap[String,Int]): HashMap[String, Int] = {
-     // hint: replace the question marks
-    firstMap.merged(secondMap){ case ((k1,v1), (k2,v2)) => ??? }
+  def reduceFun(accumulator: HashMap[String,Int], newMap: HashMap[String,Int]): HashMap[String, Int] = {
+    ???
   }
 }
 

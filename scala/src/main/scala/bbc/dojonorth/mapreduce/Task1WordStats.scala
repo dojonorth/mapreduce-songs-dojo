@@ -4,28 +4,12 @@ import bbc.dojonorth.lyrics.{LyricData, LyricDataLoader, SongWords}
 
 class Task1AverageDifferentWords {
 
-  // should return number of distinct words in a song
-  def mapFun(song: SongWords): Int = {
-    ???
-  }
 
-  def reduceFun(firstCount: Int, secondCount: Int): Int = {
-    // hint: can we compute an average without having processed all the input?
-    ???
-  }
 }
 
 class Task1AverageTotalWords {
 
-  // should return total number of words in a song
-  def mapFun(song: SongWords): Int = {
-    ???
-  }
 
-  def reduceFun(firstCount: Int, secondCount: Int): Int = {
-    // hint: can we compute an average without having processed all the input?
-    ???
-  }
 }
 
 /**
@@ -40,17 +24,10 @@ object WordStats extends App {
   val totalWords = new Task1AverageTotalWords
 
   def getAverageDifferentWords(songsData: LyricData) = {
-    val theDifferentWords = songsData.songs
-      .map(differentWords.mapFun)
-      .reduceLeft(differentWords.reduceFun)
-
     ???
   }
 
   def getAverageTotalWords(songsData: LyricData) = {
-    val allTheWords = songsData.songs
-      .map(totalWords.mapFun)
-      .reduceLeft(totalWords.reduceFun)
 
     ???
   }
